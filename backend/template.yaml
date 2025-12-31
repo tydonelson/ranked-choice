@@ -71,6 +71,27 @@ Resources:
         AllowMethods: "'GET,POST,OPTIONS'"
         AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
         AllowOrigin: "'*'"
+      MethodSettings:
+        - ResourcePath: "/*"
+          HttpMethod: "*"
+          ThrottlingBurstLimit: 10
+          ThrottlingRateLimit: 5
+
+  ApiUsagePlan:
+    Type: AWS::ApiGateway::UsagePlan
+    DependsOn: ApiGatewayProdStage
+    Properties:
+      UsagePlanName: RankedChoiceBasicPlan
+      Description: Basic usage plan with conservative limits
+      Quota:
+        Limit: 1000
+        Period: DAY
+      Throttle:
+        BurstLimit: 10
+        RateLimit: 5
+      ApiStages:
+        - ApiId: !Ref ApiGateway
+          Stage: prod
 
 Outputs:
   ApiUrl:
