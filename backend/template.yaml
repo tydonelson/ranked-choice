@@ -79,7 +79,6 @@ Resources:
 
   ApiUsagePlan:
     Type: AWS::ApiGateway::UsagePlan
-    DependsOn: ApiGatewayProdStage
     Properties:
       UsagePlanName: RankedChoiceBasicPlan
       Description: Basic usage plan with conservative limits
@@ -91,7 +90,7 @@ Resources:
         RateLimit: 5
       ApiStages:
         - ApiId: !Ref ApiGateway
-          Stage: prod
+          Stage: !Ref ApiGateway.Stage
 
 Outputs:
   ApiUrl:
