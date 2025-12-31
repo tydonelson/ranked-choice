@@ -7,6 +7,7 @@ frontend:
         - npm install
     build:
       commands:
+        - export REACT_APP_API_URL=https://vepv8420vl.execute-api.us-east-1.amazonaws.com/prod
         - npm run build
   artifacts:
     baseDirectory: frontend/build
