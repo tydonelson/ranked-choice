@@ -4,14 +4,15 @@ Get your ranked choice voting app running locally in minutes.
 
 ## Project Status
 
-Your project structure is ready! Here's what's been set up:
+Fully functional ranked choice voting application:
 
-- ✅ React + TypeScript frontend
-- ✅ Go backend with Lambda handlers
-- ✅ DynamoDB repository layer
-- ✅ API service layer
-- ✅ Basic UI components
-- ✅ AWS deployment configuration
+- ✅ React + TypeScript frontend (deployed on AWS Amplify)
+- ✅ Go backend with Lambda handlers (deployed on AWS)
+- ✅ DynamoDB database
+- ✅ Complete UI with drag-and-drop voting
+- ✅ Two voting methods: IRV and Borda Count
+- ✅ Results visualization with charts
+- ✅ URL routing and poll sharing
 
 ## Run Locally
 
@@ -29,44 +30,14 @@ You'll see:
 - Navigation to create polls (placeholder for now)
 - Basic styling
 
-### Next Steps for Development
+### Making Changes
 
-The foundation is ready. Here's what to build next:
+To modify the application:
 
-#### 1. Create Poll Component
-- Form to input poll title, description
-- Dynamic candidate list (add/remove)
-- Form validation
-- Call `api.createPoll()` and navigate to results
-
-#### 2. Vote Component
-- Display poll details
-- Drag-and-drop ranking interface (or up/down buttons)
-- Submit rankings via `api.submitVote()`
-
-#### 3. Results Component
-- Fetch results with `api.getResults()`
-- Display round-by-round vote counts
-- Visualize winner
-- Show eliminated candidates per round
-
-#### 4. Routing
-Install React Router:
-```bash
-cd frontend
-npm install react-router-dom
-```
-
-Then set up routes:
-- `/` - Home
-- `/create` - Create poll
-- `/poll/:id` - Vote on poll
-- `/poll/:id/results` - View results
-
-#### 5. URL Sharing
-- Copy poll URL to clipboard
-- QR code generation
-- Social sharing buttons
+1. Make your changes to the frontend code
+2. Test locally with `npm start`
+3. Push to Git - Amplify will automatically rebuild and deploy
+4. For backend changes, use `make deploy` from the backend directory
 
 ## Deploy to AWS
 
@@ -125,28 +96,14 @@ curl -X POST $API_URL/polls/{POLL_ID}/vote \
 curl $API_URL/polls/{POLL_ID}/results
 ```
 
-## Recommended Libraries
+## Installed Libraries
 
-For enhanced functionality:
+The application uses:
 
-```bash
-cd frontend
-
-# Drag and drop
-npm install @dnd-kit/core @dnd-kit/sortable
-
-# Routing
-npm install react-router-dom
-
-# Charts for results
-npm install recharts
-
-# Copy to clipboard
-npm install react-copy-to-clipboard
-
-# Icons
-npm install react-icons
-```
+- `@dnd-kit/core` and `@dnd-kit/sortable` - Drag and drop voting
+- `react-router-dom` - URL routing
+- `recharts` - Results visualization
+- `react-icons` - UI icons
 
 ## Environment Variables
 

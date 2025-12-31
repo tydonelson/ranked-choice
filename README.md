@@ -205,14 +205,16 @@ See [infrastructure/dynamodb-schema.md](infrastructure/dynamodb-schema.md) for d
 
 **Estimated cost for small-scale usage**: $1-5/month
 
-## Development Roadmap
+## Live Application
 
-- [ ] Frontend UI components
-- [ ] Drag-and-drop vote ranking
-- [ ] Results visualization with charts
-- [ ] Poll expiration dates
-- [ ] Poll privacy options
-- [ ] Social sharing features
+- **Frontend**: Deployed on AWS Amplify
+- **Backend API**: `https://vepv8420vl.execute-api.us-east-1.amazonaws.com/prod`
+- **Features**:
+  - ✅ Drag-and-drop vote ranking
+  - ✅ Two voting methods (IRV and Borda Count)
+  - ✅ Real-time results with charts
+  - ✅ Poll sharing via URL
+  - ✅ Anonymous voting
 
 ## License
 

@@ -2,14 +2,22 @@
 
 Step-by-step instructions to deploy your Ranked Choice Voting application to AWS.
 
-## Prerequisites Checklist
+## Current Deployment Status
+
+✅ **Application is fully deployed and running**
+
+- Backend API: `https://vepv8420vl.execute-api.us-east-1.amazonaws.com/prod`
+- Frontend: Deployed on AWS Amplify
+- Database: DynamoDB table `ranked-choice-polls`
+
+## Prerequisites for Re-deployment
 
 - [x] AWS account created
 - [x] AWS CLI installed and configured
 - [x] Node.js and npm installed
 - [x] Go installed
-- [ ] AWS SAM CLI installed
-- [ ] Git repository pushed to GitHub/GitLab/Bitbucket
+- [x] AWS SAM CLI installed
+- [x] Git repository on GitHub
 
 ## Step 1: Install AWS SAM CLI
 

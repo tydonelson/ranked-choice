@@ -12,7 +12,8 @@
       "Bash(git push:*)",
       "Bash(git config:*)",
       "Bash(git add:*)",
-      "Bash(GOOS=linux GOARCH=amd64 go build:*)"
+      "Bash(GOOS=linux GOARCH=amd64 go build:*)",
+      "Bash(ls:*)"
     ]
   }
 }
