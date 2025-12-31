@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import { Home } from './components/Home';
 import { CreatePoll } from './components/CreatePoll';
 import { PollPage } from './components/PollPage';
 
@@ -15,20 +14,11 @@ function App() {
               Ranked Choice Voting
             </Link>
           </h1>
-          <nav>
-            <Link to="/">
-              <button>Home</button>
-            </Link>
-            <Link to="/create">
-              <button>Create Poll</button>
-            </Link>
-          </nav>
         </header>
 
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/create" element={<CreatePoll />} />
+            <Route path="/" element={<CreatePoll />} />
             <Route path="/poll/:pollId" element={<PollPage />} />
             <Route path="/poll/:pollId/results" element={<PollPage showResults={true} />} />
           </Routes>
