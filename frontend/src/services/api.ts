@@ -1,5 +1,6 @@
 import { Poll, PollResults, CreatePollRequest, CreateVoteRequest } from '../types';
 
+// API URL is configured via REACT_APP_API_URL environment variable
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 async function handleResponse<T>(response: Response): Promise<T> {
