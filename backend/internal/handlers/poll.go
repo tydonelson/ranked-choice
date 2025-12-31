@@ -114,6 +114,7 @@ func (h *PollHandler) GetResults(ctx context.Context, request events.APIGatewayP
 	}
 
 	results := calculateResults(poll, votes)
+	calculateBordaCount(poll, votes, results)
 	return jsonResponse(200, results), nil
 }
 
@@ -196,6 +197,38 @@ func calculateResults(poll *models.Poll, votes []models.Vote) *models.PollResult
 		eliminated[toEliminate] = true
 		roundNum++
 	}
+}
+
+func calculateBordaCount(poll *models.Poll, votes []models.Vote, results *models.PollResults) {
+	bordaScores := make(map[string]int)
+
+	// Initialize scores for all candidates
+	for _, candidate := range poll.Candidates {
+		bordaScores[candidate] = 0
+	}
+
+	// Calculate points for each vote
+	numCandidates := len(poll.Candidates)
+	for _, vote := range votes {
+		for position, candidate := range vote.Rankings {
+			// First place gets N points, second gets N-1, etc.
+			points := numCandidates - position
+			bordaScores[candidate] += points
+		}
+	}
+
+	// Find the winner (highest score)
+	maxScore := -1
+	winner := ""
+	for candidate, score := range bordaScores {
+		if score > maxScore {
+			maxScore = score
+			winner = candidate
+		}
+	}
+
+	results.BordaCount = bordaScores
+	results.BordaWinner = winner
 }
 
 func jsonResponse(statusCode int, body interface{}) events.APIGatewayProxyResponse {

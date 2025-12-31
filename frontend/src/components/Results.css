@@ -1,5 +1,5 @@
 .results-container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -56,19 +56,46 @@
   font-size: 1.1rem;
 }
 
+.voting-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.method-section h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 .winner-announcement {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   padding: 1rem;
   background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.winner-announcement h3 {
-  margin: 0;
+.winner-announcement strong {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .voting-methods,
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .no-votes {
@@ -84,13 +111,30 @@
   font-size: 1.1rem;
 }
 
-.rounds-section {
-  margin-bottom: 2rem;
+.rounds-section,
+.borda-section {
+  margin-bottom: 0;
 }
 
-.rounds-section > h3 {
+.rounds-section > h3,
+.borda-section > h3 {
   color: #2c3e50;
   margin-bottom: 1.5rem;
+}
+
+.borda-section .how-it-works {
+  margin-top: 2rem;
+}
+
+.how-it-works ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  color: #2c3e50;
+}
+
+.how-it-works p {
+  margin: 0.5rem 0;
+  color: #2c3e50;
 }
 
 .round {

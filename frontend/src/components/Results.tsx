@@ -86,15 +86,31 @@ export function Results({ pollId }: ResultsProps) {
 
       <div className="results-summary">
         <p><strong>Total Votes:</strong> {results.totalVotes}</p>
-        {results.winner && (
-          <div className="winner-announcement">
-            <h3>Winner: {results.winner}</h3>
-          </div>
-        )}
       </div>
 
-      <div className="rounds-section">
-        <h3>Round-by-Round Results</h3>
+      <div className="voting-methods">
+        <div className="method-section">
+          <h3>Instant-Runoff Voting (IRV)</h3>
+          {results.winner && (
+            <div className="winner-announcement">
+              <strong>Winner:</strong> {results.winner}
+            </div>
+          )}
+        </div>
+
+        <div className="method-section">
+          <h3>Borda Count</h3>
+          {results.bordaWinner && (
+            <div className="winner-announcement">
+              <strong>Winner:</strong> {results.bordaWinner}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="results-grid">
+        <div className="rounds-section">
+          <h3>IRV: Round-by-Round Results</h3>
         {results.rounds.map((round) => {
           const totalVotesInRound = Object.values(round.votes).reduce((sum, count) => sum + count, 0);
           const majority = Math.floor(totalVotesInRound / 2) + 1;
@@ -140,10 +156,54 @@ export function Results({ pollId }: ResultsProps) {
             </div>
           );
         })}
+        </div>
+
+        <div className="borda-section">
+          <h3>Borda Count: Point Totals</h3>
+          <div className="vote-bars">
+            {Object.entries(results.bordaCount)
+              .sort(([, a], [, b]) => b - a)
+              .map(([candidate, points]) => {
+                const maxPoints = Math.max(...Object.values(results.bordaCount));
+                const percentage = maxPoints > 0 ? (points / maxPoints) * 100 : 0;
+                const isWinner = candidate === results.bordaWinner;
+
+                return (
+                  <div key={candidate} className="vote-bar-container">
+                    <div className="candidate-info">
+                      <span className="candidate-name">
+                        {candidate}
+                        {isWinner && <span className="majority-badge">Winner</span>}
+                      </span>
+                      <span className="vote-count">
+                        {points} {points === 1 ? 'point' : 'points'}
+                      </span>
+                    </div>
+                    <div className="vote-bar-track">
+                      <div
+                        className={`vote-bar ${isWinner ? 'has-majority' : ''}`}
+                        style={{ width: `${percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+          <div className="how-it-works">
+            <h4>How Borda Count Works</h4>
+            <p>Each ranking position awards points:</p>
+            <ul>
+              <li>1st choice: {poll.candidates.length} points</li>
+              <li>2nd choice: {poll.candidates.length - 1} points</li>
+              <li>And so on...</li>
+            </ul>
+            <p>The candidate with the most total points wins.</p>
+          </div>
+        </div>
       </div>
 
       <div className="how-it-works">
-        <h4>How Ranked Choice Voting Works</h4>
+        <h4>How Instant-Runoff Voting Works</h4>
         <ol>
           <li>Count all first-choice votes</li>
           <li>If a candidate has more than 50% of votes, they win</li>

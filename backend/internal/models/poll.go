@@ -19,10 +19,12 @@ type Vote struct {
 }
 
 type PollResults struct {
-	PollID     string                `json:"pollId"`
-	TotalVotes int                   `json:"totalVotes"`
-	Rounds     []Round               `json:"rounds"`
-	Winner     string                `json:"winner,omitempty"`
+	PollID              string         `json:"pollId"`
+	TotalVotes          int            `json:"totalVotes"`
+	Rounds              []Round        `json:"rounds"`
+	Winner              string         `json:"winner,omitempty"`
+	BordaCount          map[string]int `json:"bordaCount"`
+	BordaWinner         string         `json:"bordaWinner,omitempty"`
 }
 
 type Round struct {

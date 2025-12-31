@@ -25,6 +25,8 @@ export interface PollResults {
   totalVotes: number;
   rounds: Round[];
   winner?: string;
+  bordaCount: Record<string, number>;
+  bordaWinner?: string;
 }
 
 export interface CreatePollRequest {

@@ -7,7 +7,12 @@
       "Bash(dir:*)",
       "Bash(sam.cmd --version:*)",
       "Bash(sam.cmd deploy:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git config:*)",
+      "Bash(git add:*)",
+      "Bash(GOOS=linux GOARCH=amd64 go build:*)"
     ]
   }
 }
