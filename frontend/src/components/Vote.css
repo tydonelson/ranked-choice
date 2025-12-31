@@ -1,0 +1,187 @@
+.vote-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.vote-container h2 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.poll-description {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.instructions {
+  background-color: #e8f4f8;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  border-left: 4px solid #3498db;
+}
+
+.instructions p {
+  margin: 0.5rem 0;
+  color: #2c3e50;
+}
+
+.rankings-section {
+  margin-bottom: 2rem;
+}
+
+.rankings-section h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.ranked-list {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.ranked-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background-color: white;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  cursor: move;
+  transition: all 0.2s;
+}
+
+.ranked-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.ranked-item.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.drag-handle {
+  color: #95a5a6;
+  font-size: 1.2rem;
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.ranked-item:active .drag-handle {
+  cursor: grabbing;
+}
+
+.rank-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.candidate-name {
+  flex: 1;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.remove-ranking-btn {
+  padding: 0.25rem 0.5rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.remove-ranking-btn:hover:not(:disabled) {
+  background-color: #c0392b;
+}
+
+.remove-ranking-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.candidates-section {
+  margin-bottom: 2rem;
+}
+
+.candidates-section h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.candidate-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.candidate-btn {
+  padding: 1rem;
+  background-color: white;
+  border: 2px solid #bdc3c7;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.candidate-btn:hover:not(:disabled) {
+  border-color: #3498db;
+  background-color: #ebf5fb;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.candidate-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submit-vote-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-vote-btn:hover:not(:disabled) {
+  background-color: #229954;
+}
+
+.submit-vote-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #fee;
+  color: #c0392b;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 1px solid #f5c6cb;
+}

@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Ranked Choice Voting Backend
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: provided.al2023
+    Architectures:
+      - x86_64
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref PollsTable
+
+Resources:
+  PollsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ranked-choice-polls
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+        - AttributeName: SK
+          AttributeType: S
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+        - AttributeName: SK
+          KeyType: RANGE
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: bootstrap
+      Events:
+        CreatePoll:
+          Type: Api
+          Properties:
+            Path: /polls
+            Method: POST
+            RestApiId: !Ref ApiGateway
+        GetPoll:
+          Type: Api
+          Properties:
+            Path: /polls/{id}
+            Method: GET
+            RestApiId: !Ref ApiGateway
+        CreateVote:
+          Type: Api
+          Properties:
+            Path: /polls/{id}/vote
+            Method: POST
+            RestApiId: !Ref ApiGateway
+        GetResults:
+          Type: Api
+          Properties:
+            Path: /polls/{id}/results
+            Method: GET
+            RestApiId: !Ref ApiGateway
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref PollsTable
+
+  ApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/prod"
+  PollsTableName:
+    Description: "DynamoDB table name"
+    Value: !Ref PollsTable

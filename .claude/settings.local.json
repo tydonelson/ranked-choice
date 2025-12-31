@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-react-app frontend --template typescript)",
+      "Bash(mkdir:*)",
+      "Bash(go mod init:*)",
+      "Bash(dir:*)",
+      "Bash(sam.cmd --version:*)",
+      "Bash(sam.cmd deploy:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}
