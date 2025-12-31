@@ -21,6 +21,27 @@ A full-stack ranked choice voting application with a React TypeScript frontend a
 - API Gateway
 - DynamoDB
 
+## Architecture
+
+```
+┌─────────────┐         ┌──────────────┐         ┌─────────────┐
+│   Browser   │────────▶│  AWS Amplify │         │   Lambda    │
+│  (React)    │         │  (Frontend)  │         │  (Go API)   │
+└─────────────┘         └──────────────┘         └─────────────┘
+                               │                        │
+                               │                        │
+                               ▼                        ▼
+                        ┌──────────────┐         ┌─────────────┐
+                        │ CloudFront   │         │ API Gateway │
+                        │     CDN      │         └─────────────┘
+                        └──────────────┘                │
+                                                        │
+                                                        ▼
+                                                 ┌─────────────┐
+                                                 │  DynamoDB   │
+                                                 └─────────────┘
+```
+
 ## Project Structure
 
 ```
